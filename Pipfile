@@ -7,6 +7,10 @@ name = "pypi"
 
 [packages]
 gunicorn = "*"
+flask = "*"
+flask-restplus = "*"
+xlrd = "*"
+requests = "*"
 
 [requires]
 python_version = "3.6"
