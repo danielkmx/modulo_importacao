@@ -6,8 +6,8 @@ name = "pypi"
 [dev-packages]
 
 [packages]
+gunicorn = "*"
 
 [requires]
 python_version = "3.6"
 unicorn = "19.9.0"
-
