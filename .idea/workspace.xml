@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4b43b44c-8d19-4434-969c-b7d5998e7932" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/Services/app/KoboApiService.py" beforeDir="false" afterPath="$PROJECT_DIR$/KoboApiService.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Services/app/MongoRepository.py" beforeDir="false" afterPath="$PROJECT_DIR$/MongoRepository.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MongoRepository.py" beforeDir="false" afterPath="$PROJECT_DIR$/MongoRepository.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -17,7 +17,7 @@
       <file leaf-file-name="KoboApiService.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/KoboApiService.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
+            <state relative-caret-position="210">
               <caret line="17" column="52" lean-forward="true" selection-start-line="17" selection-start-column="52" selection-end-line="17" selection-end-column="52" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
@@ -38,8 +38,8 @@
       <file leaf-file-name="MongoRepository.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/MongoRepository.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="46" lean-forward="true" selection-start-line="14" selection-start-column="46" selection-end-line="14" selection-end-column="46" />
+            <state relative-caret-position="478">
+              <caret line="39" column="23" selection-start-line="39" selection-start-column="23" selection-end-line="39" selection-end-column="23" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -97,6 +97,7 @@
         <option value="$PROJECT_DIR$/Services/KoboApiService.py" />
         <option value="$PROJECT_DIR$/Services/app/MongoRepository.py" />
         <option value="$PROJECT_DIR$/Services/MongoRepository.py" />
+        <option value="$PROJECT_DIR$/MongoRepository.py" />
       </list>
     </option>
   </component>
@@ -134,8 +135,9 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/Services/app" />
       <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/Services" />
+      <recent name="$PROJECT_DIR$/Services/app" />
       <recent name="C:\Users\kmx\Documents\dev\TetoBusinessIntelligence.API\Services" />
     </key>
   </component>
@@ -234,6 +236,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1920" y="-2" width="1920" height="1082" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.12864584" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -631,7 +634,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/KoboApiService.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
+        <state relative-caret-position="210">
           <caret line="17" column="52" lean-forward="true" selection-start-line="17" selection-start-column="52" selection-end-line="17" selection-end-column="52" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
@@ -641,8 +644,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/MongoRepository.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="46" lean-forward="true" selection-start-line="14" selection-start-column="46" selection-end-line="14" selection-end-column="46" />
+        <state relative-caret-position="478">
+          <caret line="39" column="23" selection-start-line="39" selection-start-column="23" selection-end-line="39" selection-end-column="23" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>

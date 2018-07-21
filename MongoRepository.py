@@ -8,7 +8,7 @@ app.config['JSON_AS_ASCII'] = False
 
 ns = api.namespace('Formularios', description='Operações para filtrar dados das enquetes registradas no KoboToolbox')
 
-@ns.route('/formulario/<string:url>/<int:i_d>/<string:username>/<string:password>')
+@ns.route('/<string:url>/<int:i_d>/<string:username>/<string:password>')
 @ns.response(404,'Página não encontrada, o endereço inserido deve estar incorreto!')
 class Formulario(Resource):
     def get(self, url, i_d, username, password):
@@ -20,13 +20,13 @@ class Formulario(Resource):
 
                  Urls do kobo legado:
                 kc.humanitarianresponse.info
-                koboform.docker.kobo.techo.org
+                kobocatdocker.kobo.techo.org
 
                 """
 
         return jsonify(kapi.retorna_respostas_com_labels(url, i_d, username, password))
 
-@ns.route('/formularios/<string:url>/<string:username>/<string:password>')
+@ns.route('/<string:url>/<string:username>/<string:password>')
 @ns.response(404,'Página não encontrada, o endereço inserido deve estar incorreto!')
 class Formularios(Resource):
     def get(self, url, username, password):
@@ -37,7 +37,7 @@ class Formularios(Resource):
 
 
                 kc.humanitarianresponse.info
-                koboform.docker.kobo.techo.org
+                kobocat.docker.kobo.techo.org
             """
         return jsonify(kapi.imprimir_lista_formularios(url, username, password))
 if __name__ == '__main__':
