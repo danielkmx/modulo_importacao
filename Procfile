@@ -1,2 +1,1 @@
-web: gunicorn MongoRepository.py
-
+web: gunicorn MongoRepository:app
