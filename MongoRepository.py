@@ -1,5 +1,5 @@
 from flask import Flask, jsonify
-from Services.app import KoboApiService as kapi
+import KoboApiService as kapi
 from flask_restplus import Resource, Api
 
 app = Flask(__name__)
