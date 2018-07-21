@@ -9,3 +9,5 @@ name = "pypi"
 
 [requires]
 python_version = "3.6"
+[requires]
+unicorn = "19.9.0"
