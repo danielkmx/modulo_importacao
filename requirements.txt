@@ -42,3 +42,5 @@ six==1.11.0
 Twisted==17.9.0
 Werkzeug==0.14.1
 zope.interface==4.3.2
+[requires]
+python_full_version = "3.6.5"
