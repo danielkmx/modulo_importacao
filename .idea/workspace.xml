@@ -35,7 +35,7 @@
       <file leaf-file-name="MongoRepository.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Services/MongoRepository.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="435">
+            <state relative-caret-position="95">
               <caret line="29" column="84" selection-start-line="29" selection-start-column="84" selection-end-line="29" selection-end-column="84" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
@@ -96,9 +96,9 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="1919" />
-    <option name="y" value="291" />
+  <component name="ProjectFrameBounds" extendedState="1">
+    <option name="x" value="1920" />
+    <option name="y" value="289" />
     <option name="width" value="1371" />
     <option name="height" value="791" />
   </component>
@@ -233,15 +233,14 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1920" y="-2" width="1920" height="1082" extended-state="7" />
-    <editor active="true" />
+    <frame x="1920" y="289" width="1371" height="791" extended-state="1" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12864584" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18016046" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.125" side_tool="true" visible="true" weight="0.32201645" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.12545587" side_tool="true" visible="true" weight="0.4596182" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.875" visible="true" weight="0.32201645" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.87454414" visible="true" weight="0.4596182" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -642,7 +641,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Services/MongoRepository.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
+        <state relative-caret-position="95">
           <caret line="29" column="84" selection-start-line="29" selection-start-column="84" selection-end-line="29" selection-end-column="84" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
