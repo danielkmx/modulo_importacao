@@ -1,2 +1,2 @@
-web: gunicorn KoboApiService:app
+web: gunicorn MongoRepository.py
 
