@@ -29,7 +29,7 @@ def retorna_respostas_com_labels(u_r_l, i_d, u_s_e_r, p_a_s_s_w_o_r_d):
         for key, value in lista_perguntas_labels.items():
             if key in resposta:
                 resposta[key] = value
-    return formulario
+    return formulario[0]
 
 def retorna_key_do_formulario(u_r_l, id, u_s_e_r, p_a_s_s_w_o_r_d):
     req = requests.get(u_r_l, auth=(u_s_e_r, p_a_s_s_w_o_r_d))
