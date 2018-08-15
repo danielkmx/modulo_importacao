@@ -95,14 +95,11 @@ def importar_xls_grupamento_para_lista(u_r_l, u_s_e_r, p_a_s_s_w_o_r_d):
             linhas = workbook.sheet_by_index(total).nrows
             colunas = workbook.sheet_by_index(total).ncols
             table_grupamento = list()
-            for item in table:
-                item[workbook.sheet_by_index(total).name] = {}
+
             record = dict()
             for x in range(1, linhas):
                 for y in range(colunas):
-                    if workbook.sheet_by_index(total).cell(x, y).value and 'id' not in workbook.sheet_by_index(
-                            total).cell(0, y).value \
-                            and 'ObjectId' not in main_sheet.cell(0, y).value:
+                    if workbook.sheet_by_index(total).cell(x, y).value:
                         if '/' in workbook.sheet_by_index(total).cell(0, y).value:
                             a = workbook.sheet_by_index(total).cell(0, y).value.split('/')
                             record[a[len(a) - 1]] = workbook.sheet_by_index(total).cell(x, y).value
@@ -114,14 +111,13 @@ def importar_xls_grupamento_para_lista(u_r_l, u_s_e_r, p_a_s_s_w_o_r_d):
                 for ele in table_grupamento:
                     for element in table:
                         if element['_index'] == ele['_parent_index']:
+                            key_value = dict()
                             for key, value in ele.items():
-                                if 'parent' not in key and 'id' not in key:
-                                    key_value = dict()
                                     key_value[key] = value
-                                    element[workbook.sheet_by_index(total).name] = key_value
+                            element.setdefault(workbook.sheet_by_index(total).name, [])
+                            element[workbook.sheet_by_index(total).name].append(key_value)
             total = total + 1
 
         return table
 
 
-print(retorna_respostas_com_labels('kc.humanitarianresponse.info', 134046, 'riodejaneiro', 'teto2015'))
