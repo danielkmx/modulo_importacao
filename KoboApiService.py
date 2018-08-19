@@ -96,8 +96,9 @@ def importar_xls_grupamento_para_lista(u_r_l, u_s_e_r, p_a_s_s_w_o_r_d):
             colunas = workbook.sheet_by_index(total).ncols
             table_grupamento = list()
 
-            record = dict()
+
             for x in range(1, linhas):
+                record = dict()
                 for y in range(colunas):
                     if workbook.sheet_by_index(total).cell(x, y).value:
                         if '/' in workbook.sheet_by_index(total).cell(0, y).value:
@@ -108,14 +109,14 @@ def importar_xls_grupamento_para_lista(u_r_l, u_s_e_r, p_a_s_s_w_o_r_d):
                                 = workbook.sheet_by_index(total).cell(x, y).value
                 if record:
                     table_grupamento.append(record)
-                for ele in table_grupamento:
-                    for element in table:
-                        if element['_index'] == ele['_parent_index']:
-                            key_value = dict()
-                            for key, value in ele.items():
-                                    key_value[key] = value
-                            element.setdefault(workbook.sheet_by_index(total).name, [])
-                            element[workbook.sheet_by_index(total).name].append(key_value)
+            for ele in table_grupamento:
+                for element in table:
+                    if element['_index'] == ele['_parent_index']:
+                        key_value = dict()
+                        for key, value in ele.items():
+                                key_value[key] = value
+                        element.setdefault(workbook.sheet_by_index(total).name, [])
+                        element[workbook.sheet_by_index(total).name].append(key_value)
             total = total + 1
 
         return table

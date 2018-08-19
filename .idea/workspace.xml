@@ -15,22 +15,31 @@
     <session id="930950735">
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="138" />
+          <entry key="py" value="141" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="138" />
+          <entry key="Python" value="141" />
         </counts>
       </usages-collector>
-      <usages-collector id="statistics.file.extensions.open" />
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="py" value="1" />
+        </counts>
+      </usages-collector>
       <usages-collector id="statistics.lifecycle.project">
         <counts>
+          <entry key="project.open.time.10" value="1" />
           <entry key="project.open.time.8" value="1" />
-          <entry key="project.opened" value="1" />
+          <entry key="project.opened" value="2" />
         </counts>
       </usages-collector>
-      <usages-collector id="statistics.file.types.open" />
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="Python" value="1" />
+        </counts>
+      </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
@@ -38,11 +47,20 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/KoboApiService.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="322">
-              <caret line="123" lean-forward="true" selection-start-line="123" selection-end-line="123" />
+            <state relative-caret-position="368">
+              <caret line="61" column="4" selection-start-line="61" selection-start-column="4" selection-end-line="61" selection-end-column="38" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file:///usr/local/lib/python3.6/dist-packages/xlrd/sheet.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="6030">
+              <caret line="409" selection-start-line="409" selection-end-line="409" />
             </state>
           </provider>
         </entry>
@@ -59,8 +77,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file:///usr/local/lib/python3.6/dist-packages/xlrd/book.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="18900">
-              <caret line="1264" selection-start-line="1264" selection-end-line="1264" />
+            <state relative-caret-position="6855">
+              <caret line="461" selection-start-line="461" selection-end-line="461" />
             </state>
           </provider>
         </entry>
@@ -142,7 +160,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -154,6 +171,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -180,7 +198,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.MongoRepository">
+  <component name="RunManager" selected="Python.KoboApiServices">
     <configuration name="KoboApiService" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="TetoBusinessIntelligence.API" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -251,8 +269,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.MongoRepository" />
         <item itemvalue="Python.KoboApiServices" />
+        <item itemvalue="Python.MongoRepository" />
         <item itemvalue="Python.KoboApiService" />
       </list>
     </recent_temporary>
@@ -279,14 +297,14 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.832894" visible="true" weight="0.48109242" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4491302" weight="0.24789916" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.8313126" weight="0.3382353" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.4470216" visible="true" weight="0.24789916" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="8" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.16710596" side_tool="true" visible="true" weight="0.48109242" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5529784" side_tool="true" visible="true" weight="0.24789916" />
       <window_info anchor="bottom" id="Python Console" order="10" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -306,8 +324,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/KoboApiService.py</url>
-          <line>120</line>
-          <option name="timeStamp" value="61" />
+          <line>74</line>
+          <option name="timeStamp" value="81" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -338,11 +356,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/KoboApiService.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="123" lean-forward="true" selection-start-line="123" selection-end-line="123" />
+        <state relative-caret-position="368">
+          <caret line="61" column="4" selection-start-line="61" selection-start-column="4" selection-end-line="61" selection-end-column="38" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/python3.6/dist-packages/xlrd/sheet.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6030">
+          <caret line="409" selection-start-line="409" selection-end-line="409" />
         </state>
       </provider>
     </entry>
@@ -355,8 +380,8 @@
     </entry>
     <entry file="file:///usr/local/lib/python3.6/dist-packages/xlrd/book.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18900">
-          <caret line="1264" selection-start-line="1264" selection-end-line="1264" />
+        <state relative-caret-position="6855">
+          <caret line="461" selection-start-line="461" selection-end-line="461" />
         </state>
       </provider>
     </entry>
