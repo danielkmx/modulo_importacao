@@ -70,12 +70,12 @@ def importar_xls_grupamento_para_lista(u_r_l, u_s_e_r, p_a_s_s_w_o_r_d):
     main_linhas = main_sheet.nrows
     main_colunas = main_sheet.ncols
     table = list()
-    record = dict()
+
 
     for x in range(1, main_linhas):
+        record = dict()
         for y in range(main_colunas):
-            if main_sheet.cell(x, y).value and 'id' not in main_sheet.cell(0, y).value \
-                    and 'ObjectId' not in main_sheet.cell(0, y).value:
+            if main_sheet.cell(x, y).value:
                 if '/' in main_sheet.cell(0, y).value:
                     a = main_sheet.cell(0, y).value.split('/')
                     record[a[len(a) - 1]] = main_sheet.cell(x, y).value
@@ -122,3 +122,4 @@ def importar_xls_grupamento_para_lista(u_r_l, u_s_e_r, p_a_s_s_w_o_r_d):
         return table
 
 
+print(retorna_respostas_com_labels('kc.humanitarianresponse.info', 134046, 'riodejaneiro', 'teto2015'))
