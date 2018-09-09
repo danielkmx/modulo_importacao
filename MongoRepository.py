@@ -1,4 +1,5 @@
 from flask import Flask, jsonify
+from flask_restplus.cors import crossdomain
 import KoboApiService as kapi
 from flask_restplus import Resource, Api
 
@@ -8,8 +9,8 @@ app.config['JSON_AS_ASCII'] = False
 
 ns = api.namespace('Formularios', description='Operações para filtrar dados das enquetes registradas no KoboToolbox')
 
+@crossdomain(origin='*')
 @ns.route('/<string:url>/<int:i_d>/<string:username>/<string:password>')
-@ns.response(404,'Página não encontrada, o endereço inserido deve estar incorreto!')
 class Formulario(Resource):
     def get(self, url, i_d, username, password):
         """ Retorna todas enquetes preenchidas
@@ -25,9 +26,8 @@ class Formulario(Resource):
                 """
 
         return jsonify(kapi.retorna_respostas_com_labels(url, i_d, username, password))
-
+@crossdomain(origin='*')
 @ns.route('/<string:url>/<string:username>/<string:password>')
-@ns.response(404,'Página não encontrada, o endereço inserido deve estar incorreto!')
 class Formularios(Resource):
     def get(self, url, username, password):
         """

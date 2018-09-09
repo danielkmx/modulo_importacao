@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4b43b44c-8d19-4434-969c-b7d5998e7932" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/KoboApiService.py" beforeDir="false" afterPath="$PROJECT_DIR$/KoboApiService.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Services/formulario.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MongoRepository.py" beforeDir="false" afterPath="$PROJECT_DIR$/MongoRepository.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -15,79 +16,55 @@
     <session id="930950735">
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="155" />
+          <entry key="py" value="963" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="155" />
+          <entry key="Python" value="963" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="py" value="1" />
+          <entry key="py" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.lifecycle.project">
         <counts>
           <entry key="project.open.time.10" value="1" />
+          <entry key="project.open.time.17" value="1" />
           <entry key="project.open.time.8" value="1" />
-          <entry key="project.opened" value="2" />
+          <entry key="project.opened" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Python" value="1" />
+          <entry key="Python" value="3" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/KoboApiService.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="79" column="13" selection-start-line="79" selection-start-column="13" selection-end-line="79" selection-end-column="13" />
+            <state relative-caret-position="2400">
+              <caret line="160" column="20" selection-start-line="160" selection-start-column="20" selection-end-line="160" selection-end-column="20" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
+                <marker date="1536531046942" expanded="true" signature="3089:3903" ph="..." />
+                <marker date="1536531046942" expanded="true" signature="3985:4372" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file:///usr/local/lib/python3.6/dist-packages/xlrd/sheet.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6030">
-              <caret line="409" selection-start-line="409" selection-end-line="409" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/MongoRepository.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="30" selection-start-line="30" selection-end-line="30" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file:///usr/local/lib/python3.6/dist-packages/xlrd/book.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6855">
-              <caret line="461" selection-start-line="461" selection-end-line="461" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file:///usr/local/lib/python3.6/dist-packages/werkzeug/serving.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="11820">
-              <caret line="794" selection-start-line="794" selection-end-line="794" />
+            <state relative-caret-position="15">
+              <caret line="1" column="5" lean-forward="true" selection-start-line="1" selection-start-column="5" selection-end-line="1" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -95,26 +72,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file:///usr/lib/python3/dist-packages/apport_python_hook.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="705">
-              <caret line="48" selection-start-line="48" selection-end-line="48" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file:///usr/lib/python3.6/json/__init__.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5190">
-              <caret line="348" selection-start-line="348" selection-end-line="348" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/enviroment/enviroment.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" selection-start-line="2" selection-end-line="2" />
+            <state relative-caret-position="221">
+              <caret line="46" selection-start-line="46" selection-end-line="46" />
             </state>
           </provider>
         </entry>
@@ -147,9 +106,9 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1890" />
-    <option name="y" value="179" />
-    <option name="width" value="1853" />
+    <option name="x" value="1858" />
+    <option name="y" value="223" />
+    <option name="width" value="1843" />
     <option name="height" value="810" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -198,7 +157,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.KoboApiServices">
+  <component name="RunManager" selected="Python.MongoRepository">
     <configuration name="KoboApiService" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="TetoBusinessIntelligence.API" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -269,8 +228,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.KoboApiServices" />
         <item itemvalue="Python.MongoRepository" />
+        <item itemvalue="Python.KoboApiServices" />
         <item itemvalue="Python.KoboApiService" />
       </list>
     </recent_temporary>
@@ -297,14 +256,14 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.83078545" weight="0.3382353" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.44649446" visible="true" weight="0.24789916" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.8234054" visible="true" weight="0.36554623" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.6360656" weight="0.25513515" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="8" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.55350554" side_tool="true" visible="true" weight="0.24789916" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.17659463" side_tool="true" visible="true" weight="0.36554623" />
       <window_info anchor="bottom" id="Python Console" order="10" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -319,15 +278,22 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/KoboApiService.py</url>
-          <line>8</line>
-          <option name="timeStamp" value="46" />
+          <line>15</line>
+          <option name="timeStamp" value="107" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/KoboApiService.py</url>
-          <line>74</line>
-          <option name="timeStamp" value="81" />
+          <line>50</line>
+          <option name="timeStamp" value="108" />
         </line-breakpoint>
       </breakpoints>
+      <default-breakpoints>
+        <breakpoint type="python-exception">
+          <properties notifyOnTerminate="true" exception="BaseException">
+            <option name="notifyOnTerminate" value="true" />
+          </properties>
+        </breakpoint>
+      </default-breakpoints>
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -354,51 +320,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/KoboApiService.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="79" column="13" selection-start-line="79" selection-start-column="13" selection-end-line="79" selection-end-column="13" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/lib/python3.6/dist-packages/xlrd/sheet.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6030">
-          <caret line="409" selection-start-line="409" selection-end-line="409" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MongoRepository.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="30" selection-start-line="30" selection-end-line="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/lib/python3.6/dist-packages/xlrd/book.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6855">
-          <caret line="461" selection-start-line="461" selection-end-line="461" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/lib/python3.6/dist-packages/werkzeug/serving.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="11820">
-          <caret line="794" selection-start-line="794" selection-end-line="794" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/lib/python3/dist-packages/apport_python_hook.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="705">
-          <caret line="48" selection-start-line="48" selection-end-line="48" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/lib/python3.6/json/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5190">
@@ -410,6 +331,53 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
           <caret line="2" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/python3.6/dist-packages/werkzeug/serving.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="634">
+          <caret line="794" selection-start-line="794" selection-end-line="794" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/python3.6/dist-packages/xlrd/book.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="634">
+          <caret line="461" selection-start-line="461" selection-end-line="461" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/python3.6/dist-packages/xlrd/sheet.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="634">
+          <caret line="409" selection-start-line="409" selection-end-line="409" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/KoboApiService.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2400">
+          <caret line="160" column="20" selection-start-line="160" selection-start-column="20" selection-end-line="160" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+            <marker date="1536531046942" expanded="true" signature="3089:3903" ph="..." />
+            <marker date="1536531046942" expanded="true" signature="3985:4372" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/lib/python3/dist-packages/apport_python_hook.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="46" selection-start-line="46" selection-end-line="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MongoRepository.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="5" lean-forward="true" selection-start-line="1" selection-start-column="5" selection-end-line="1" selection-end-column="25" />
         </state>
       </provider>
     </entry>
