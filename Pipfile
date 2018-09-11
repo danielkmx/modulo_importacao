@@ -9,6 +9,7 @@ name = "pypi"
 gunicorn = "*"
 flask = "*"
 flask-restplus = "*"
+flask_cors = "*"
 xlrd = "*"
 requests = "*"
 

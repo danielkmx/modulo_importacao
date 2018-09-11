@@ -1,15 +1,15 @@
 from flask import Flask, jsonify
-from flask_restplus.cors import crossdomain
+from flask_cors import CORS
 import KoboApiService as kapi
 from flask_restplus import Resource, Api
 
 app = Flask(__name__)
 api = Api(app)
+CORS(app)
 app.config['JSON_AS_ASCII'] = False
 
 ns = api.namespace('Formularios', description='Operações para filtrar dados das enquetes registradas no KoboToolbox')
 
-@crossdomain(origin='*')
 @ns.route('/<string:url>/<int:i_d>/<string:username>/<string:password>')
 class Formulario(Resource):
     def get(self, url, i_d, username, password):
@@ -26,7 +26,6 @@ class Formulario(Resource):
                 """
 
         return jsonify(kapi.retorna_respostas_com_labels(url, i_d, username, password))
-@crossdomain(origin='*')
 @ns.route('/<string:url>/<string:username>/<string:password>')
 class Formularios(Resource):
     def get(self, url, username, password):
