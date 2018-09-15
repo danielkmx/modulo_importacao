@@ -159,3 +159,14 @@ def importar_xls_grupamento_para_lista(u_r_l, u_s_e_r, p_a_s_s_w_o_r_d,i_d):
                         element[workbook.sheet_by_index(total).name].append(key_value)
             total = total + 1
         return table
+
+def retorna_lista_perguntas(u_r_l, i_d, u_s_e_r, p_a_s_s_w_o_r_d):
+    enquetes_respondidas = retorna_respostas_com_labels(u_r_l, i_d, u_s_e_r, p_a_s_s_w_o_r_d)
+    lista = list()
+    for enquete in enquetes_respondidas:
+        for key, value in enquete.items():
+            if key not in lista:
+                lista.append(key)
+
+    return lista
+
