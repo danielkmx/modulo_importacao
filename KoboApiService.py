@@ -162,11 +162,11 @@ def importar_xls_grupamento_para_lista(u_r_l, u_s_e_r, p_a_s_s_w_o_r_d,i_d):
 
 def retorna_lista_perguntas(u_r_l, i_d, u_s_e_r, p_a_s_s_w_o_r_d):
     enquetes_respondidas = retorna_respostas_com_labels(u_r_l, i_d, u_s_e_r, p_a_s_s_w_o_r_d)
-    lista = list()
+    dicionario = dict()
     for enquete in enquetes_respondidas:
         for key, value in enquete.items():
-            if key not in lista:
-                lista.append(key)
+            if key not in dicionario:
+                dicionario[key] = 0
 
-    return lista
+    return dicionario
 
