@@ -39,6 +39,22 @@ class Formularios(Resource):
                 kobocat.docker.kobo.techo.org
             """
         return jsonify(kapi.imprimir_lista_formularios(url, username, password))
+
+@ns.route('/perguntas/<string:url>/<int:i_d>/<string:username>/<string:password>')
+class Formularios(Resource):
+    def get(self, url, i_d, username, password):
+        """
+        Retorna Ids e nomes de todos formularios
+
+             Urls do kobo legado:
+
+
+                kc.humanitarianresponse.info
+                kobocat.docker.kobo.techo.org
+            """
+        return jsonify(kapi.retorna_lista_perguntas(url, i_d, username, password))
+
+
 if __name__ == '__main__':
     app.run(debug=True)
 
