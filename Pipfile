@@ -11,6 +11,7 @@ flask = "*"
 flask-restplus = "*"
 flask_cors = "*"
 xlrd = "*"
+xlwt ="*"
 requests = "*"
 
 [requires]
