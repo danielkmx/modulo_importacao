@@ -2,6 +2,7 @@ import xlrd
 import requests
 import json
 import os
+import xlwt
 
 lista_content = dict()
 
@@ -22,20 +23,18 @@ def retorna_respostas_com_labels(u_r_l, i_d, u_s_e_r, p_a_s_s_w_o_r_d):
     lista_content = json.loads(req.content)
     lista_perguntas_labels = dict()
     for item in lista_content['content']['survey']:
+        respostas_dict = {}
         if 'select_from_list_name' in item:
             for pergunta in lista_content['content']['choices']:
                     if pergunta['list_name'] in item['select_from_list_name']:
-                        lista_perguntas_labels[item['label'][0]] = pergunta['label'][0]
+                        respostas_dict[pergunta['name']] = pergunta['label'][0]
+            lista_perguntas_labels[item['label'][0]] = respostas_dict
     for resposta in formulario[0]:
         for key, value in lista_perguntas_labels.items():
-            for chave, valor in resposta.items():
-                if isinstance(valor,list):
-                 for awnser in valor:
-                    if key in awnser:
-                        awnser[key] = value
-                else:
-                    if key in resposta:
-                        resposta[key] = value
+            for chave_resposta, key_resposta in resposta.items():
+                    if key in chave_resposta:
+                        if key_resposta in value:
+                            resposta[chave_resposta] = value[key_resposta]
 
     return formulario[0]
 
@@ -70,20 +69,18 @@ def retorna_lista_com_labels(u_r_l, i_d, u_s_e_r, p_a_s_s_w_o_r_d):
 def filtra__labels_respostas_grupamento(lista_grupamento):
     lista_perguntas_labels = dict()
     for item in lista_content['content']['survey']:
+        respostas_dict = {}
         if 'select_from_list_name' in item:
             for pergunta in lista_content['content']['choices']:
                 if pergunta['list_name'] in item['select_from_list_name']:
-                    lista_perguntas_labels[item['label'][0]] = pergunta['label'][0]
+                    respostas_dict[pergunta['name']] = pergunta['label'][0]
+            lista_perguntas_labels[item['label'][0]] = respostas_dict
     for resposta in lista_grupamento:
         for key, value in lista_perguntas_labels.items():
-            for chave, valor in resposta.items():
-                if isinstance(valor, list):
-                    for awnser in valor:
-                        if key in awnser:
-                            awnser[key] = value
-                else:
-                    if key in resposta:
-                        resposta[key] = value
+                    for chave_resposta,key_resposta in resposta.items():
+                        if key in chave_resposta:
+                            if key_resposta in value:
+                                resposta[chave_resposta] = value[key_resposta]
     return lista_grupamento
 def filtra_labels_perguntas_grupamento(lista_grupamento):
     global lista_content
@@ -159,3 +156,50 @@ def importar_xls_grupamento_para_lista(u_r_l, u_s_e_r, p_a_s_s_w_o_r_d,i_d):
                         element[workbook.sheet_by_index(total).name].append(key_value)
             total = total + 1
         return table
+
+def retorna_lista_perguntas(u_r_l, i_d, u_s_e_r, p_a_s_s_w_o_r_d):
+    enquetes_respondidas = retorna_respostas_com_labels(u_r_l, i_d, u_s_e_r, p_a_s_s_w_o_r_d)
+    dicionario = dict()
+    for enquete in enquetes_respondidas:
+        for key, value in enquete.items():
+            if key not in dicionario:
+                dicionario[key] = 0
+
+    return dicionario
+
+def exporta_xls(u_r_l, i_d, u_s_e_r, p_a_s_s_w_o_r_d):
+    enquetes = retorna_respostas_com_labels(u_r_l, i_d, u_s_e_r, p_a_s_s_w_o_r_d)
+    req = requests.get('https://' + u_r_l + '/api/v1/data/' + str(i_d) + '.xls', auth=(u_s_e_r, p_a_s_s_w_o_r_d))
+    file = "formulario.xls"
+    with open('formulario.xls', 'wb') as output:
+        output.write(req.content)
+    workbook = xlrd.open_workbook('formulario.xls')
+    wb = xlwt.Workbook()
+    for sheet in workbook.sheet_names():
+        wb.add_sheet(sheet, cell_overwrite_ok=True)
+
+
+    for enquete in enquetes:
+        linha_semgrupamento = 1
+        coluna_semgrupamento = 0
+        for elemento,elementovalue in enquete.items():
+            index = 0
+            if isinstance(elementovalue, list):
+                index = index + 1
+                wb.active_sheet = index
+                sheet = wb.get_sheet(index)
+                for valor in elementovalue:
+                    linha_grupamento = 0
+                    coluna_grupamento = 0
+                    for prop,value in valor.items():
+                        sheet.write(0,coluna_grupamento,prop)
+                        sheet.write(linha_grupamento,coluna_grupamento,value)
+                        linha_grupamento = linha_grupamento + 1
+                        coluna_grupamento = coluna_grupamento +1
+            else:
+                sheet = wb.get_sheet(0)
+                sheet.write(0, coluna_semgrupamento, elemento)
+                sheet.write(linha_semgrupamento, coluna_semgrupamento, elementovalue)
+                linha_semgrupamento = linha_semgrupamento + 1
+                coluna_semgrupamento = coluna_semgrupamento + 1
+        wb.save('teste.xls')
