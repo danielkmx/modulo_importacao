@@ -32,9 +32,17 @@ def retorna_respostas_com_labels(u_r_l, i_d, u_s_e_r, p_a_s_s_w_o_r_d):
     for resposta in formulario[0]:
         for key, value in lista_perguntas_labels.items():
             for chave_resposta, key_resposta in resposta.items():
-                    if key in chave_resposta:
-                        if key_resposta in value:
-                            resposta[chave_resposta] = value[key_resposta]
+                if key in chave_resposta:
+                    opcoes = str(key_resposta).split(' ')
+                    if len(opcoes) > 1:
+                        resposta[chave_resposta] = ''
+                        for opcao in opcoes:
+                                if opcao in value:
+                                    resposta[chave_resposta] = ' '.join([resposta[chave_resposta],value[opcao]])
+                    else:
+                        if key in chave_resposta:
+                            if key_resposta in value:
+                                resposta[chave_resposta] = value[key_resposta]
 
     return formulario[0]
 
@@ -79,8 +87,15 @@ def filtra__labels_respostas_grupamento(lista_grupamento):
         for key, value in lista_perguntas_labels.items():
                     for chave_resposta,key_resposta in resposta.items():
                         if key in chave_resposta:
-                            if key_resposta in value:
-                                resposta[chave_resposta] = value[key_resposta]
+                            opcoes = str(key_resposta).split(' ')
+                            if len(opcoes) > 1:
+                                resposta[chave_resposta] = ''
+                                for opcao in opcoes:
+                                    if opcao in value:
+                                        resposta[chave_resposta] = ' '.join([resposta[chave_resposta], value[opcao]])
+                            else:
+                                if key_resposta in value:
+                                    resposta[chave_resposta] = value[key_resposta]
     return lista_grupamento
 def filtra_labels_perguntas_grupamento(lista_grupamento):
     global lista_content
@@ -203,3 +218,5 @@ def exporta_xls(u_r_l, i_d, u_s_e_r, p_a_s_s_w_o_r_d):
                 linha_semgrupamento = linha_semgrupamento + 1
                 coluna_semgrupamento = coluna_semgrupamento + 1
         wb.save('teste.xls')
+
+print(retorna_respostas_com_labels('kc.humanitarianresponse.info',274173,'riodejaneiro','teto2015'))
