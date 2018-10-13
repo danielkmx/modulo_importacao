@@ -358,22 +358,42 @@ def gera_lista_prioridades(enquetes):
                                                                                                 'Não': 1},
     }
 
+    select_many = {
+        '${nome_morador} tem alguma destas doenças permanentes ou de longa duração?',
+        'Nos últimos doze meses, ${nome_morador} teve algum destes problemas respiratórios?',
+        'De qual deficiência ${nome_morador} é portador',
+        'Observar e definir o tipo do material predominante do teto da casa.',
+        'Observar e definir o tipo do material predominante das paredes da casa.',
+        'Observar e definir o tipo do material predominante do piso da casa.',
+        'A casa apresenta algum dos seguintes problemas?',
+        'A casa está localizada perto ou em alguma das seguintes áreas?',
+        'Nos últimos 12 (doze) meses, aconteceu alguma das situações na sua casa?'
+    }
+
     totais = {}
     for enquete in enquetes:
         total_enquete=0
         index=enquete['_index']
         num_moradores = 0
         for key, value in enquete.items():
-            if key in pesos and value in pesos[key]:
+            if key in pesos and value in pesos[key] and key not in select_many:
                 total_enquete=total_enquete+pesos[key][value]
+            elif key in select_many:
+                for choice in value.split():
+                    if choice in pesos[key]:
+                        total_enquete = total_enquete + pesos[key][choice]
 
             if isinstance(value,list):
                 total_grupo = 0
                 for item in value:
                     num_moradores = num_moradores+1
                     for k,v in item.items():
-                        if k in pesos and v in pesos[k]:
+                        if k in pesos and v in pesos[k] and k not in select_many:
                             total_grupo = total_grupo+pesos[k][v]
+                        elif k in select_many:
+                            for c in v.split():
+                                if c in pesos[k]:
+                                    total_enquete = total_enquete + pesos[k][c]
                         if k == 'Poderia me dizer qual é a sua renda mensal? (Somando todos os rendimentos incluindo benefícios sociais)':
                             if v < 101:
                                 total_grupo = total_grupo + 5
@@ -398,5 +418,5 @@ def gera_lista_prioridades(enquetes):
 
 #print(retorna_respostas_com_labels('kc.humanitarianresponse.info',274173,'riodejaneiro','teto2015'))
 
-exporta_xls('kc.humanitarianresponse.info',276803,'riodejaneiro','teto2015')
+exporta_xls('kc.humanitarianresponse.info',274174,'riodejaneiro','teto2015')
 print('ok')
