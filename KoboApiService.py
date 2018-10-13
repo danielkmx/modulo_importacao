@@ -65,15 +65,34 @@ def retorna_lista_com_labels(u_r_l, i_d, u_s_e_r, p_a_s_s_w_o_r_d):
     lista_content = json.loads(req.content)
     formulario = importar_xls_grupamento_para_lista('https://' + u_r_l + '/api/v1/data/' + str(i_d) + '.xls', u_s_e_r, p_a_s_s_w_o_r_d,i_d)
     labels_dict = dict()
+    types_dict = dict()
     for item in lista_content['content']['survey']:
         if 'label' in item:
             labels_dict[item['$autoname']] = item['label']
+
+    ret_formulario = list()
     for enquete in formulario:
-                for key, value in labels_dict.items():
-                    if key in enquete:
-                        enquete[value[0]] = enquete.pop(key)
-    retorno = [formulario, id_string]
+        aux_enquete = {}
+        aux_enquete['_index'] = enquete.pop('_index')
+        for key, value in labels_dict.items():
+            if key in enquete:
+                if isinstance(enquete[key], list):
+                    aux_group = []
+                    e = enquete[key]
+                    for item in e:
+                        aux_group_item = dict()
+                        aux_group_item['_parent_index'] = item.pop('_parent_index')
+                        for k_group, v_group in labels_dict.items():
+                           if v_group[0] in item:
+                               aux_group_item[v_group[0]] = item[v_group[0]]
+                        aux_group.append(aux_group_item)
+                    aux_enquete[value[0]]= aux_group
+                else:
+                    aux_enquete[value[0]] = enquete.pop(key)
+        ret_formulario.append(aux_enquete)
+    retorno = [ret_formulario, id_string]
     return retorno
+
 def filtra__labels_respostas_grupamento(lista_grupamento):
     lista_perguntas_labels = dict()
     for item in lista_content['content']['survey']:
@@ -97,6 +116,7 @@ def filtra__labels_respostas_grupamento(lista_grupamento):
                                 if key_resposta in value:
                                     resposta[chave_resposta] = value[key_resposta]
     return lista_grupamento
+
 def filtra_labels_perguntas_grupamento(lista_grupamento):
     global lista_content
     labels_dict = dict()
@@ -193,30 +213,210 @@ def exporta_xls(u_r_l, i_d, u_s_e_r, p_a_s_s_w_o_r_d):
     for sheet in workbook.sheet_names():
         wb.add_sheet(sheet, cell_overwrite_ok=True)
 
-
+    all_columns = dict()
+    all_columns[0] = list()
     for enquete in enquetes:
-        linha_semgrupamento = 1
+        for key, value in enquete.items():
+            if key not in all_columns[0]:
+                all_columns[0].append(key)
+
+            if isinstance(value, list):
+                if not key in all_columns:
+                    all_columns[key] = list()
+
+                for item in value:
+                    for k,v in item.items():
+                        if k not in all_columns[key]:
+                            all_columns[key].append(k)
+
+    linha_semgrupamento = 1
+    linha_grupamento = 1
+    for enquete in enquetes:
         coluna_semgrupamento = 0
-        for elemento,elementovalue in enquete.items():
+        for elemento in all_columns[0]:
             index = 0
-            if isinstance(elementovalue, list):
+            valor_elemento = '?'
+            if elemento in enquete:
+                valor_elemento = enquete[elemento]
+
+            if isinstance(valor_elemento, list):
                 index = index + 1
                 wb.active_sheet = index
                 sheet = wb.get_sheet(index)
-                for valor in elementovalue:
-                    linha_grupamento = 0
+
+                for el in valor_elemento:
                     coluna_grupamento = 0
-                    for prop,value in valor.items():
-                        sheet.write(0,coluna_grupamento,prop)
-                        sheet.write(linha_grupamento,coluna_grupamento,value)
-                        linha_grupamento = linha_grupamento + 1
-                        coluna_grupamento = coluna_grupamento +1
+                    for col in all_columns[elemento]:
+                        sheet.write(0, coluna_grupamento, col)
+                        if col in el:
+                                sheet.write(linha_grupamento, coluna_grupamento, el[col])
+                        else:
+                            sheet.write(linha_grupamento, coluna_grupamento, '?')
+                        coluna_grupamento = coluna_grupamento + 1
+                    linha_grupamento = linha_grupamento + 1
             else:
                 sheet = wb.get_sheet(0)
                 sheet.write(0, coluna_semgrupamento, elemento)
-                sheet.write(linha_semgrupamento, coluna_semgrupamento, elementovalue)
-                linha_semgrupamento = linha_semgrupamento + 1
+                sheet.write(linha_semgrupamento, coluna_semgrupamento, valor_elemento)
                 coluna_semgrupamento = coluna_semgrupamento + 1
-        wb.save('teste.xls')
 
-print(retorna_respostas_com_labels('kc.humanitarianresponse.info',274173,'riodejaneiro','teto2015'))
+        linha_semgrupamento = linha_semgrupamento + 1
+
+    respostas = retorna_lista_com_labels(u_r_l, i_d, u_s_e_r, p_a_s_s_w_o_r_d)
+    lista_prioridades=gera_lista_prioridades(respostas[0])
+
+    wb.add_sheet('lista_prioridades', cell_overwrite_ok=True)
+    wb.active_sheet = 2
+    sheet = wb.get_sheet(2)
+    sheet.write(0, 0, 'id_enquete')
+    sheet.write(0, 1, 'valor_prioridade')
+    linha_prioridade = 1
+
+    for id_enquete, valor_prioridade in lista_prioridades.items():
+        sheet.write(linha_prioridade, 0, id_enquete)
+        sheet.write(linha_prioridade, 1, valor_prioridade)
+        linha_prioridade = linha_prioridade+1
+
+    wb.save('teste_enquete.xls')
+
+def gera_lista_prioridades(enquetes):
+
+    pesos = {
+
+        'Qual é a situação do terreno que habita?': {'alugado': 1, 'emprestado': 1},
+
+        'Você ou algum membro do lar possui alguma outra casa ou terreno?': {'casa_vazia': -1,'espe_o_n_o_res': -1},
+
+        'Observar e definir o tipo do material predominante do teto da casa.': {'1': 2, '2': 1},
+
+        'Qual característica apresenta o teto da casa?': {
+            'com_algumas_fi': 1,
+            'com_muitas_fis': 2,
+            'sob_aparente_r': 3},
+
+        'Observar e definir o tipo do material predominante das paredes da casa.': {'1': 1,
+                                                                                    '2': 1,
+                                                                                    '3': 2,
+                                                                                    '5': 1},
+
+        'Qual característica apresenta as paredes da casa?': {
+            'com_algumas_fi': 1,
+            'com_muitas_fis': 2,
+            'sob_aparente_r': 3},
+
+        'Observar e definir o tipo do material predominante do piso da casa.': {'1': 1,
+                                                                                '2': 1,
+                                                                                '5': 1},
+
+        'Qual característica apresenta o piso da casa?': {
+            'com_algumas_fi': 1,
+            'com_muitas_fis': 2,
+            'sob_aparente_r': 3},
+
+        'A casa apresenta algum dos seguintes problemas?': {'1': 1,
+                                                            '2': 1,
+                                                            '3': 2,
+                                                            '4': 2,
+                                                            'calor_e_ou_fri': 1,
+                                                            'entrada_de_roe': 2},
+
+        'A casa está localizada perto ou em alguma das seguintes áreas?': {'2': 1,
+                                                                           '3': 2,
+                                                                           '4': 1,
+                                                                           '5': 1,
+                                                                           '7': 1},
+
+        'Nos últimos 12 (doze) meses, aconteceu alguma das situações na sua casa?': {'1': 1,
+                                                                                     '3': 1},
+
+        'Para que a família utilizará a casa do TETO?': {
+            'substitui_o_total_da_moradia_a': 1,
+            'cozinha': -1},
+
+        '${nome_morador} se considera de qual gênero?': {'Feminino': 1, 'Outro': 1},
+
+        '${nome_morador} tem alguma destas doenças permanentes ou de longa duração?': {'Hipertensão': 1,
+                                                                                       'Diabetes': 1,
+                                                                                       'Câncer': 1,
+                                                                                       'Doenças nos rins': 1,
+                                                                                       'Obesidade': 1,
+                                                                                       'Depressão': 1,
+                                                                                       'HIV/Aids': 1},
+
+        'Nos últimos doze meses, ${nome_morador} teve algum destes problemas respiratórios?': {'Rinite alérgica': 1,
+                                                                                            'Asma': 1,
+                                                                                            'Bronquite': 1,
+                                                                                            'Enfisema pulmonar': 1,
+                                                                                            'Tuberculose': 1},
+
+        'De qual deficiência ${nome_morador} é portador?': {'Visual': 1, 'Auditiva': 1, 'Motora': 1, 'Mental': 1},
+
+        '${nome_morador} está grávida ou amamentando atualmente?': {'Está grávida': 2, 'Está amamentando': 1},
+
+        '${nome_morador} está empregado, exerceu alguma atividade remunerada ou negócio próprio nos últimos 3 meses?': {
+                                                                                                'Sim, trabalho informal': 1,
+                                                                                                'Não': 1},
+    }
+
+    select_many = {
+        '${nome_morador} tem alguma destas doenças permanentes ou de longa duração?',
+        'Nos últimos doze meses, ${nome_morador} teve algum destes problemas respiratórios?',
+        'De qual deficiência ${nome_morador} é portador',
+        'Observar e definir o tipo do material predominante do teto da casa.',
+        'Observar e definir o tipo do material predominante das paredes da casa.',
+        'Observar e definir o tipo do material predominante do piso da casa.',
+        'A casa apresenta algum dos seguintes problemas?',
+        'A casa está localizada perto ou em alguma das seguintes áreas?',
+        'Nos últimos 12 (doze) meses, aconteceu alguma das situações na sua casa?'
+    }
+
+    totais = {}
+    for enquete in enquetes:
+        total_enquete=0
+        index=enquete['_index']
+        num_moradores = 0
+        for key, value in enquete.items():
+            if key in pesos and value in pesos[key] and key not in select_many:
+                total_enquete=total_enquete+pesos[key][value]
+            elif key in select_many:
+                for choice in value.split():
+                    if choice in pesos[key]:
+                        total_enquete = total_enquete + pesos[key][choice]
+
+            if isinstance(value,list):
+                total_grupo = 0
+                for item in value:
+                    num_moradores = num_moradores+1
+                    for k,v in item.items():
+                        if k in pesos and v in pesos[k] and k not in select_many:
+                            total_grupo = total_grupo+pesos[k][v]
+                        elif k in select_many:
+                            for c in v.split():
+                                if c in pesos[k]:
+                                    total_enquete = total_enquete + pesos[k][c]
+                        if k == 'Poderia me dizer qual é a sua renda mensal? (Somando todos os rendimentos incluindo benefícios sociais)':
+                            if v < 101:
+                                total_grupo = total_grupo + 5
+                            elif v < 201:
+                                total_grupo = total_grupo + 4
+                            elif v < 301:
+                                total_grupo = total_grupo + 3
+                            elif v < 401:
+                                total_grupo = total_grupo + 2
+                            elif v < 501:
+                                total_grupo = total_grupo + 1
+                total_enquete = total_enquete+total_grupo
+
+                if num_moradores>4 and num_moradores<7:
+                    total_enquete = total_enquete +1
+                elif num_moradores>6:
+                    total_enquete = total_enquete+2
+
+        totais[index] = total_enquete
+
+    return totais
+
+#print(retorna_respostas_com_labels('kc.humanitarianresponse.info',274173,'riodejaneiro','teto2015'))
+
+exporta_xls('kc.humanitarianresponse.info',274174,'riodejaneiro','teto2015')
+print('ok')
