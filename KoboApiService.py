@@ -3,9 +3,14 @@ import requests
 import json
 import os
 import xlwt
+import urllib
+import pymongo
 
 lista_content = dict()
 
+
+client = pymongo.MongoClient('mongodb://tetorj:teto2015@ds141613.mlab.com:41613/heroku_twgwkvxl')
+db = client['heroku_twgwkvxl']
 
 def imprimir_lista_formularios(u_r_l, u_s_e_r, p_a_s_s_w_o_r_d):
     r = requests.get('https://' + u_r_l + '/api/v1/data', auth=(u_s_e_r, p_a_s_s_w_o_r_d))
@@ -14,6 +19,7 @@ def imprimir_lista_formularios(u_r_l, u_s_e_r, p_a_s_s_w_o_r_d):
 
 def retorna_respostas_com_labels(u_r_l, i_d, u_s_e_r, p_a_s_s_w_o_r_d):
     formulario = retorna_lista_com_labels(u_r_l, i_d, u_s_e_r, p_a_s_s_w_o_r_d)
+    nome_enquete = retorna_nome_enquete(u_r_l, i_d, u_s_e_r, p_a_s_s_w_o_r_d)
     if u_r_l == 'kobocat.docker.kobo.techo.org':
         u_r_l = 'koboform.docker.kobo.techo.org'
     if u_r_l == 'kc.humanitarianresponse.info':
@@ -30,8 +36,12 @@ def retorna_respostas_com_labels(u_r_l, i_d, u_s_e_r, p_a_s_s_w_o_r_d):
                         respostas_dict[pergunta['name']] = pergunta['label'][0]
             lista_perguntas_labels[item['label'][0]] = respostas_dict
     for resposta in formulario[0]:
+        del resposta['_index']
         for key, value in lista_perguntas_labels.items():
             for chave_resposta, key_resposta in resposta.items():
+                if isinstance(chave_resposta, list):
+                    for grupamento in chave_resposta:
+                        del grupamento['_parent_index']
                 if key in chave_resposta:
                     opcoes = str(key_resposta).split(' ')
                     if len(opcoes) > 1:
@@ -42,10 +52,17 @@ def retorna_respostas_com_labels(u_r_l, i_d, u_s_e_r, p_a_s_s_w_o_r_d):
                     else:
                         if key in chave_resposta:
                             if key_resposta in value:
+                                chave_resposta.replace('.','')
                                 resposta[chave_resposta] = value[key_resposta]
-
+    insert_enquetes_no_mongo(formulario[0],nome_enquete)
     return formulario[0]
 
+def insert_enquetes_no_mongo(colection,col_name):
+    colection = troca_ponto_por_barra(colection)
+    collist = db.list_collection_names()
+    if col_name in collist:
+        db.drop_collection(col_name)
+    db[col_name].insert_many(colection)
 def retorna_key_do_formulario(u_r_l, id, u_s_e_r, p_a_s_s_w_o_r_d):
     req = requests.get(u_r_l, auth=(u_s_e_r, p_a_s_s_w_o_r_d))
     lista_content_id = json.loads(req.content)
@@ -65,9 +82,9 @@ def retorna_lista_com_labels(u_r_l, i_d, u_s_e_r, p_a_s_s_w_o_r_d):
     lista_content = json.loads(req.content)
     formulario = importar_xls_grupamento_para_lista('https://' + u_r_l + '/api/v1/data/' + str(i_d) + '.xls', u_s_e_r, p_a_s_s_w_o_r_d,i_d)
     labels_dict = dict()
-    types_dict = dict()
     for item in lista_content['content']['survey']:
         if 'label' in item:
+            item['$autoname'].replace('.','')
             labels_dict[item['$autoname']] = item['label']
 
     ret_formulario = list()
@@ -92,7 +109,11 @@ def retorna_lista_com_labels(u_r_l, i_d, u_s_e_r, p_a_s_s_w_o_r_d):
         ret_formulario.append(aux_enquete)
     retorno = [ret_formulario, id_string]
     return retorno
-
+def retorna_nome_enquete(u_r_l, id, u_s_e_r, p_a_s_s_w_o_r_d):
+    lista_enquetes = imprimir_lista_formularios(u_r_l, u_s_e_r, p_a_s_s_w_o_r_d)
+    for enquete in lista_enquetes:
+        if enquete['id'] == id:
+            return enquete['title']
 def filtra__labels_respostas_grupamento(lista_grupamento):
     lista_perguntas_labels = dict()
     for item in lista_content['content']['survey']:
@@ -126,6 +147,9 @@ def filtra_labels_perguntas_grupamento(lista_grupamento):
     for enquete in lista_grupamento:
                 for key, value in labels_dict.items():
                     if key in enquete:
+                        value[0] = value[0].replace("${nombre}","")
+                        value[0] = value[0].replace("${nome_morador}", "")
+                        value[0] = value[0].replace(".", "")
                         enquete[value[0]] = enquete.pop(key)
     return lista_grupamento
 
@@ -416,7 +440,16 @@ def gera_lista_prioridades(enquetes):
 
     return totais
 
-#print(retorna_respostas_com_labels('kc.humanitarianresponse.info',274173,'riodejaneiro','teto2015'))
+def troca_ponto_por_barra(formulario):
+    for enquete in formulario:
+        for key,value in enquete.items():
+            if isinstance(key,str):
+                if '.' in key:
+                    enquete[key.replace('.', '')] = enquete[key]
+                    del enquete[key]
+                if '$' in key:
+                    enquete[key.replace('$', '')] = enquete[key]
+                    del enquete[key]
 
-exporta_xls('kc.humanitarianresponse.info',274174,'riodejaneiro','teto2015')
-print('ok')
+    return formulario
+print(retorna_respostas_com_labels('kc.humanitarianresponse.info',274173,'riodejaneiro','teto2015'))
